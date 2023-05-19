@@ -39,25 +39,26 @@ function traiterDonnees()
     beaute2=generate_gamma(10,5);
 
     var duree_relation;
-    duree_relation=fiche_compatibilité(100, age1, age2);
+    duree_relation=calculerDureeRelation(age1, age2);
 
     var premiere_dispute;
-    premiere_dispute=fiche_compatibilité(2000, salaire1, salaire2);
+    premiere_dispute=calculerPremiereDispute(salaire1, salaire2);
 
     var reconciliation;
-    reconciliation= fiche_compatibilité(200, famille1, famille2);
+    reconciliation= calculerTempsReconciliation(famille1, famille2);
 
     var sex;
-    sex=fiche_compatibilité(100, fumeur1+fidelite1, fumeur2+fidelite2);
+    sex=calculerCompatibiliteSexuelle(fumeur1,fumeur2, fidelite1,fidelite2);
 
     var physique;
-    physique=fiche_compatibilité(50, beaute1, beaute2);
+    physique=calculerCompatibilitePhysique(beaute1,beaute2);
 
     var vie_commune;
-    vie_commune=fiche_compatibilité(1000, animaux1, animaux2);
+    vie_commune=calculerDureeVieCommune(animaux1,animaux2);
     
     var pourcentage_compatibilite;
-    pourcentage_compatibilite=pourcentage_final(vie_commune,sex,premiere_dispute,reconciliation,physique,duree_relation);
+    pourcentage_compatibilite=calculerPourcentage_final(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune);
+    
     // function resizeImage(pourcentage_compatibilite);
 
     console.log(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune, pourcentage_compatibilite);
@@ -134,14 +135,6 @@ function generate_gamma(k, theta) {
   }
 
 
-function fiche_compatibilité(coeff, identite1, identite2){
-    ecart_type = (identite1-identite2)*(identite1-identite2)/2;
-    if (ecart_type==0){
-        ecart_type=1;
-    }
-    return Math.round(Math.max(0, Math.min(100, coeff/ecart_type))); // Limiter le résultat entre 0 et 100
-  }
-
 //fonction image qui grossi en fonction du pourcentage ce compatibilité
 function resizeImage(percentage) {
     var image = document.getElementById('imageId'); // Remplacez 'imageId' par l'ID de l'image coeur
@@ -151,12 +144,72 @@ function resizeImage(percentage) {
     image.style.height = newSize + '%';
 }
 
-function pourcentage_final(age, nbFreresSoeurs, salaire, fumeur, tauxFidelite, beaute) {
-    var variables = [age, nbFreresSoeurs, salaire, fumeur, tauxFidelite, beaute];
-    var sum = variables.reduce((a, b) => a + b, 0);
-    var moyenne = sum / variables.length;
-        var pourcentageFinal = Math.round(Math.max(0, Math.min(100, moyenne))); // Limiter le résultat entre 0 et 100
-    
-    return pourcentageFinal;
+function calculerPourcentage_final(dureeRelation, premiereDispute,tempsReconciliation,compatibiliteSexuelle,compatibilitePhysique,dureeVieCommune) {
+    const poidsDureeRelation = 0.2;
+    const poidsPremiereDispute = 0.1;
+    const poidsTempsReconciliation = 0.1;
+    const poidsCompatibiliteSexuelle = 0.2;
+    const poidsCompatibilitePhysique = 0.2;
+    const poidsDureeVieCommune = 0.2;
+  
+    const pourcentageFinal = (
+      dureeRelation * poidsDureeRelation +
+      premiereDispute * poidsPremiereDispute +
+      tempsReconciliation * poidsTempsReconciliation +
+      compatibiliteSexuelle * poidsCompatibiliteSexuelle +
+      compatibilitePhysique * poidsCompatibilitePhysique +
+      dureeVieCommune * poidsDureeVieCommune
+    );
+  
+    return Math.round(Math.min(Math.max(pourcentageFinal, 0), 100)*Math.floor(Math.random() * 3)); // Limiter entre 0 et 100
   }
 
+
+// Fonction pour calculer la durée de relation en années (entre 0 et 60)
+function calculerDureeRelation(age1, age2) {
+    const differenceAge = Math.abs(age1 - age2);
+    const dureeRelation = Math.min(differenceAge, 60); // Limiter la durée à 60 ans
+    return Math.round(dureeRelation);
+  }
+  
+  // Fonction pour calculer le temps d'apparition de la première dispute en jours (entre 0 et 90)
+  function calculerPremiereDispute(salaire1, salaire2) {
+    const moyenneSalaires = (salaire1 + salaire2) / 2;
+    const ecartTypeSalaires = Math.abs(salaire1 - salaire2) * 0.1; // Exemple d'estimation de l'écart type
+    const minJours = Math.max(moyenneSalaires - ecartTypeSalaires, 0);
+    const maxJours = Math.min(moyenneSalaires + ecartTypeSalaires, 90); // Limiter à 90 jours
+    const tempsPremiereDispute = Math.random() * (maxJours - minJours + 1) + minJours;
+    return Math.floor(tempsPremiereDispute/100); // Utiliser Math.floor pour obtenir un entier inférieur ou égal au résultat
+  }
+  
+  // Fonction pour calculer le temps de réconciliation entre deux disputes en jours (entre 0 et 30)
+  function calculerTempsReconciliation(famille1, famille2) {
+    const moyennefamille = (famille1 + famille2) / 2;
+    const ecartTypefamille = Math.abs(famille1 - famille2) * 0.2; // Exemple d'estimation de l'écart type
+    const minJours = Math.max(moyennefamille - ecartTypefamille, 0);
+    const maxJours = Math.min(moyennefamille + ecartTypefamille, 10); // Limiter à 10h
+    const tempsReconciliation = Math.random() * (maxJours - minJours) + minJours;
+    return Math.round(tempsReconciliation);
+  }
+  
+  //calcule de la compatibilité sexuelle en pourcentage (entre 0 et 100)
+function calculerCompatibiliteSexuelle(fumeur1, fumeur2, fidelite1, fidelite2) {
+    const moyenneFumeur = (fumeur1 + fumeur2) / 2;
+    const moyenneFidelite = (fidelite1 + fidelite2) / 2;
+    const compatibiliteSexuelle = (moyenneFumeur * 0.5 + moyenneFidelite * 0.9) ;
+    return Math.round(Math.min(Math.max(compatibiliteSexuelle, 0), 100));
+  }
+  
+  // calcule de la compatibilité physique en pourcentage (entre 0 et 100)
+  function calculerCompatibilitePhysique(beaute1, beaute2) {
+    const moyenneBeaute = (beaute1 + beaute2) / 2;
+    const compatibilitePhysique = moyenneBeaute*0.9 ; // Relation non linéaire entre beauté et compatibilité physique
+    return Math.round(Math.min(Math.max(compatibilitePhysique, 0), 100));
+  }
+  
+  // Fonction pour calculer la durée de vie commune en années (entre 0 et 60)
+  function calculerDureeVieCommune(animaux1,animaux2) {
+    const dureeVieMoyenneAnimal = 5; // Supposons une durée de vie moyenne de 10 ans pour chaque animal
+    const dureeVieCommune = Math.min(((animaux1+animaux2)/2) * dureeVieMoyenneAnimal, 60); // Limiter à 60 ans
+    return Math.round(dureeVieCommune);
+  }
