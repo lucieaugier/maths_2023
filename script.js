@@ -137,7 +137,7 @@ function generate_gamma(k, theta) {
 
 //fonction image qui grossi en fonction du pourcentage ce compatibilité
 function resizeImage(percentage) {
-    var image = document.getElementById('imageId'); // Remplacez 'imageId' par l'ID de l'image coeur
+    var image = document.getElementById('imageId'); // Remplacer 'imageId' par l'ID de l'image coeur
     var newSize = 100 + percentage; // Nouvelle taille basée sur le pourcentage
   
     image.style.width = newSize + '%';
@@ -175,17 +175,17 @@ function calculerDureeRelation(age1, age2) {
   // Fonction pour calculer le temps d'apparition de la première dispute en jours (entre 0 et 90)
   function calculerPremiereDispute(salaire1, salaire2) {
     const moyenneSalaires = (salaire1 + salaire2) / 2;
-    const ecartTypeSalaires = Math.abs(salaire1 - salaire2) * 0.1; // Exemple d'estimation de l'écart type
+    const ecartTypeSalaires = Math.abs(salaire1 - salaire2) * 0.1; //estimation de l'écart type
     const minJours = Math.max(moyenneSalaires - ecartTypeSalaires, 0);
     const maxJours = Math.min(moyenneSalaires + ecartTypeSalaires, 90); // Limiter à 90 jours
     const tempsPremiereDispute = Math.random() * (maxJours - minJours + 1) + minJours;
-    return Math.floor(tempsPremiereDispute/100); // Utiliser Math.floor pour obtenir un entier inférieur ou égal au résultat
+    return Math.floor(tempsPremiereDispute/100); 
   }
   
   // Fonction pour calculer le temps de réconciliation entre deux disputes en jours (entre 0 et 30)
   function calculerTempsReconciliation(famille1, famille2) {
     const moyennefamille = (famille1 + famille2) / 2;
-    const ecartTypefamille = Math.abs(famille1 - famille2) * 0.2; // Exemple d'estimation de l'écart type
+    const ecartTypefamille = Math.abs(famille1 - famille2) * 0.2; //estimation de l'écart type
     const minJours = Math.max(moyennefamille - ecartTypefamille, 0);
     const maxJours = Math.min(moyennefamille + ecartTypefamille, 10); // Limiter à 10h
     const tempsReconciliation = Math.random() * (maxJours - minJours) + minJours;
@@ -209,7 +209,7 @@ function calculerCompatibiliteSexuelle(fumeur1, fumeur2, fidelite1, fidelite2) {
   
   // Fonction pour calculer la durée de vie commune en années (entre 0 et 60)
   function calculerDureeVieCommune(animaux1,animaux2) {
-    const dureeVieMoyenneAnimal = 5; // Supposons une durée de vie moyenne de 10 ans pour chaque animal
+    const dureeVieMoyenneAnimal = 5; //  durée de vie moyenne de 5 ans pour chaque animal
     const dureeVieCommune = Math.min(((animaux1+animaux2)/2) * dureeVieMoyenneAnimal, 60); // Limiter à 60 ans
     return Math.round(dureeVieCommune);
   }
