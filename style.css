@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+main
+{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: #FFE0EC;
+    max-width: 100%;
+
+}
+
+body {
+    height : 100vh;
+    width: 100vw;
+    margin :0; 
+    background-color: #FFE0EC;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #FFE0EC;
+}
+
+h1{
+    font-family: 'Limelight', cursive;
+    font-size: 5rem;
+    text-align: center;
+    color :#C00044;
+    margin : 0;
+    position: relative;
+    z-index: 1;
+}
+
+
+.prenoms {
+    display : flex; 
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+}
+
+.prenom1 {
+    margin-right: 60%;
+}
+
+.prenom2 {
+    margin-left: 60%;
+}
+
+
+#submit 
+{
+    width: 10%;
+}
