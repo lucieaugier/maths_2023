@@ -47,14 +47,20 @@ h1{
 
 .prenom1 {
     margin-right: 60%;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
 
 .prenom2 {
     margin-left: 60%;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
 
 
 #submit 
 {
     width: 10%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
