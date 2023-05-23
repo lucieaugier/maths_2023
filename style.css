@@ -2,6 +2,7 @@
 
 main
 {
+    position: absolute;
     display : flex;
     flex-direction: column;
     justify-content: center;
@@ -9,6 +10,8 @@ main
     width: 100vw;
     background-color: #FFE0EC;
     max-width: 100%;
+    z-index: 1;
+    
 
 }
 
@@ -55,6 +58,17 @@ h1{
     margin-left: 60%;
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
+}
+
+.coeur{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 100px;
+    height: 300px; /*mettre une valeur entre 100 et 300 px*/
+    width: auto;
+    z-index: -1;
 }
 
 

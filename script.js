@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("submit").addEventListener("click", function() {
         // Ici, tu peux appeler la fonction de traitement des données
         traiterDonnees();
+        resizeImage(0);
     });
-
 });
 
 function traiterDonnees()
@@ -61,7 +61,7 @@ function traiterDonnees()
     
     // function resizeImage(pourcentage_compatibilite);
 
-    console.log(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune, pourcentage_compatibilite);
+    //console.log(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune, pourcentage_compatibilite);
 }
 
 
@@ -137,11 +137,11 @@ function generate_gamma(k, theta) {
 
 //fonction image qui grossi en fonction du pourcentage ce compatibilité
 function resizeImage(percentage) {
-    var image = document.getElementById('imageId'); // Remplacer 'imageId' par l'ID de l'image coeur
-    var newSize = 100 + percentage; // Nouvelle taille basée sur le pourcentage
+    var image = document.getElementsByClassName("coeur")[0];
+    console.log(image);
+    var newSize = (percentage / 100) * 200 + 100;; // Nouvelle taille basée sur le pourcentage
   
-    image.style.width = newSize + '%';
-    image.style.height = newSize + '%';
+    image.style.height = newSize + "px";
 }
 
 function calculerPourcentage_final(dureeRelation, premiereDispute,tempsReconciliation,compatibiliteSexuelle,compatibilitePhysique,dureeVieCommune) {
