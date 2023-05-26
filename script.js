@@ -2,66 +2,87 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     document.getElementById("submit").addEventListener("click", function() {
-        // Ici, tu peux appeler la fonction de traitement des données
-        traiterDonnees();
+        var datas = determineCompatibility();
+        displayDatas(datas);
         resizeImage(0);
     });
 });
 
-function traiterDonnees()
+function determineCompatibility()
 {
-    var age1, age2;
-    age1 = generate_uniformDiscrete(0,90);
-    age2 = generate_uniformDiscrete(0,90);
+  var age1, age2;
+  age1 = generate_uniformDiscrete(0,90);
+  age2 = generate_uniformDiscrete(0,90);
 
-    var famille1, famille2;
-    famille1 = generate_poisson(3);
-    famille2 = generate_poisson(3);
+  var famille1, famille2;
+  famille1 = generate_poisson(3);
+  famille2 = generate_poisson(3);
 
-    var salaire1, salaire2;
-    salaire1 = generate_exponential(0.0001);
-    salaire2 = generate_exponential(0.0001);
+  var salaire1, salaire2;
+  salaire1 = generate_exponential(0.0001);
+  salaire2 = generate_exponential(0.0001);
 
-    var animaux1, animaux2;
-    animaux1 = generate_poisson(2);
-    animaux2 = generate_poisson(2);
+  var animaux1, animaux2;
+  animaux1 = generate_poisson(2);
+  animaux2 = generate_poisson(2);
 
-    var fumeur1,fumeur2;
-    fumeur1=generate_bernoulli(0.3);
-    fumeur2=generate_bernoulli(0.3); 
+  var fumeur1,fumeur2;
+  fumeur1=generate_bernoulli(0.3);
+  fumeur2=generate_bernoulli(0.3); 
 
-    var fidelite1,fidelite2;
-    fidelite1=generate_normal(60,20);
-    fidelite2=generate_normal(60,20); 
+  var fidelite1,fidelite2;
+  fidelite1=generate_normal(60,20);
+  fidelite2=generate_normal(60,20); 
 
-    var beaute1,beaute2;
-    beaute1=generate_gamma(10,5);
-    beaute2=generate_gamma(10,5);
+  var beaute1,beaute2;
+  beaute1=generate_gamma(10,5);
+  beaute2=generate_gamma(10,5);
 
-    var duree_relation;
-    duree_relation=calculerDureeRelation(age1, age2);
+  var datas = [];
 
-    var premiere_dispute;
-    premiere_dispute=calculerPremiereDispute(salaire1, salaire2);
+  var duree_relation;
+  duree_relation=calculerDureeRelation(age1, age2);
+  datas.push(duree_relation);
 
-    var reconciliation;
-    reconciliation= calculerTempsReconciliation(famille1, famille2);
+  var premiere_dispute;
+  premiere_dispute=calculerPremiereDispute(salaire1, salaire2);
+  datas.push(premiere_dispute);
 
-    var sex;
-    sex=calculerCompatibiliteSexuelle(fumeur1,fumeur2, fidelite1,fidelite2);
+  var reconciliation;
+  reconciliation= calculerTempsReconciliation(famille1, famille2);
+  datas.push(reconciliation);
 
-    var physique;
-    physique=calculerCompatibilitePhysique(beaute1,beaute2);
+  var sex;
+  sex=calculerCompatibiliteSexuelle(fumeur1,fumeur2, fidelite1,fidelite2);
+  datas.push(sex);
 
-    var vie_commune;
-    vie_commune=calculerDureeVieCommune(animaux1,animaux2);
-    
-    var pourcentage_compatibilite;
-    pourcentage_compatibilite=calculerPourcentage_final(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune);
-    
-    // function resizeImage(pourcentage_compatibilite);
+  var physique;
+  physique=calculerCompatibilitePhysique(beaute1,beaute2);
+  datas.push(physique);
 
-    //console.log(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune, pourcentage_compatibilite);
+  var vie_commune;
+  vie_commune=calculerDureeVieCommune(animaux1,animaux2);
+  datas.push(vie_commune);
+  
+  var pourcentage_compatibilite;
+  pourcentage_compatibilite=calculerPourcentage_final(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune);
+  datas.push(pourcentage_compatibilite);
+
+  console.log(datas);
+  return datas; 
+}
+
+
+function displayDatas(datas)
+{
+  document.getElementsByClassName("ficheCompatibilite")[0].style.visibility = "visible";
+  console.log(document.getElementsByClassName("ficheCompatibilite")[0].style.visibility); 
+  document.getElementsByClassName("relation")[0].textContent = datas[0] + " ans";
+  document.getElementsByClassName("vieCommune")[0].textContent = datas[5] + " ans";
+  document.getElementsByClassName("dispute")[0].textContent = datas[1] + " mois";
+  document.getElementsByClassName("reconciliation")[0].textContent = datas[2] + " heures";
+  document.getElementsByClassName("physique")[0].textContent = datas[3] + " %";
+  document.getElementsByClassName("sexuel")[0].textContent = datas[4] + " %";
 }
 
 
@@ -138,7 +159,6 @@ function generate_gamma(k, theta) {
 //fonction image qui grossi en fonction du pourcentage ce compatibilité
 function resizeImage(percentage) {
     var image = document.getElementsByClassName("coeur")[0];
-    console.log(image);
     var newSize = (percentage / 100) * 200 + 100;; // Nouvelle taille basée sur le pourcentage
   
     image.style.height = newSize + "px";

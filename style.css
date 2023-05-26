@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500;700&family=Limelight&display=swap');
 
 main
 {
@@ -8,18 +8,16 @@ main
     justify-content: center;
     align-items: center;
     width: 100vw;
-    background-color: #FFE0EC;
+    background-color: #FFB5CF;
     max-width: 100%;
     z-index: 1;
-    
-
 }
 
 body {
     height : 100vh;
     width: 100vw;
     margin :0; 
-    background-color: #FFE0EC;
+    background-color: #FFB5CF;
     overflow-x: hidden;
 }
 
@@ -28,7 +26,7 @@ header {
     justify-content: center;
     align-items: center;
     height: 50vh;
-    background-color: #FFE0EC;
+    background-color: #FFB5CF;
 }
 
 h1{
@@ -41,11 +39,35 @@ h1{
     z-index: 1;
 }
 
+h2 {
+    font-family : 'Advent Pro', sans-serif;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    color :#C00044;
+}
+
+p{
+    font-size: 20px;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    color : black;
+    
+}
+
+
+.categories{
+    font-weight: 700;
+    color :#C00044;
+}
 
 .prenoms {
     display : flex; 
     justify-content: space-evenly;
-    margin-bottom: 10%;
+    align-items: center;
+    margin-bottom: -10%;
 }
 
 .prenom1 {
@@ -60,17 +82,26 @@ h1{
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
 
+.coeur-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .coeur{
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     min-height: 100px;
     height: 300px; /*mettre une valeur entre 100 et 300 px*/
     width: auto;
     z-index: -1;
 }
 
+.ficheCompatibilite {
+    visibility: hidden;
+    margin-top : 50px; 
+    background-color: #FFE0EC;
+    border-radius: 25px;
+    width: 50%;
+}
 
 #submit 
 {
