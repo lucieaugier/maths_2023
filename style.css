@@ -70,22 +70,24 @@ p{
     margin-bottom: -10%;
 }
 
-.prenom1 {
+#prenom1 {
     margin-right: 60%;
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
 
-.prenom2 {
+#prenom2 {
     margin-left: 60%;
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
 
 .coeur-container {
+    position : relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top : 20px ;
 }
 
 .coeur{
@@ -96,7 +98,7 @@ p{
 }
 
 .ficheCompatibilite {
-    visibility: hidden;
+    display: none;
     margin-top : 50px; 
     background-color: #FFE0EC;
     border-radius: 25px;
@@ -105,7 +107,34 @@ p{
 
 #submit 
 {
+    position: fixed;
+    bottom: 20px; /* Ajustez la valeur en fonction de votre préférence */
+    left: 50%;
+    transform: translateX(-50%);
     width: 10%;
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+ }
+ 
+ #texte-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Advent Pro", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: #C00044;
+    display: none;
+ }

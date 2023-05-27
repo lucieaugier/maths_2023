@@ -17,15 +17,16 @@
     <main>
 
     <div class="prenoms">
-        <input type="text" class="prenom1" name="prenom 1" placeholder="prénom 1">
-        <input type="text" class="prenom2" name="prenom 2" placeholder="prénom 2">
+        <input type="text" id="prenom1" name="prenom 1" placeholder="prénom 1">
+        <input type="text" id="prenom2" name="prenom 2" placeholder="prénom 2">
     </div>
 
     <div class="coeur-container">
         <img src="assets/coeur.png" alt="coeur" class="coeur">
+        <div id="texte-overlay"></div>
     </div>
 
-    <button id="submit">Faire le test</button>
+    <button id="submit" onclick="return false;">Faire le test</button>
 
     <div class = "ficheCompatibilite">
         <h2>Détails de compatibilité</h2>

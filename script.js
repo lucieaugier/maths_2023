@@ -2,11 +2,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     document.getElementById("submit").addEventListener("click", function() {
+
+      if (checkNames() == true)
+      {
         var datas = determineCompatibility();
         displayDatas(datas);
-        resizeImage(0);
+        displayPercentage(datas);
+        resizeImage(datas[6]);
+      }
+
     });
 });
+
+
+function checkNames()
+{
+  var prenom1Input = document.getElementById('prenom1').value;
+  var prenom2Input = document.getElementById('prenom2').value;
+
+  if (prenom1Input !== '' && prenom2Input !== '')
+  {
+    return true;
+  }
+  return false; 
+}
 
 function determineCompatibility()
 {
@@ -74,15 +93,21 @@ function determineCompatibility()
 
 
 function displayDatas(datas)
-{
-  document.getElementsByClassName("ficheCompatibilite")[0].style.visibility = "visible";
-  console.log(document.getElementsByClassName("ficheCompatibilite")[0].style.visibility); 
+{ 
+  document.getElementById("submit").style.display = "none";
+  document.getElementsByClassName("ficheCompatibilite")[0].style.display = "block";
+
   document.getElementsByClassName("relation")[0].textContent = datas[0] + " ans";
   document.getElementsByClassName("vieCommune")[0].textContent = datas[5] + " ans";
-  document.getElementsByClassName("dispute")[0].textContent = datas[1] + " mois";
+  document.getElementsByClassName("dispute")[0].textContent = datas[1] + " semaines";
   document.getElementsByClassName("reconciliation")[0].textContent = datas[2] + " heures";
   document.getElementsByClassName("physique")[0].textContent = datas[3] + " %";
   document.getElementsByClassName("sexuel")[0].textContent = datas[4] + " %";
+}
+
+function displayPercentage(datas){
+  document.getElementById("texte-overlay").style.display = "block";
+  document.getElementById("texte-overlay").innerHTML = datas[6] + " %";
 }
 
 
