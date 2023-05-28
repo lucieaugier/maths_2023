@@ -57,6 +57,18 @@ p{
     
 }
 
+input[type="text"]
+{
+    font-family: "advent Pro", sans-serif;
+    font-size : 20px; 
+}   
+
+button
+{
+    font-family: "advent Pro", sans-serif;
+    font-size : 20px; 
+}
+
 
 .categories{
     font-weight: 700;
@@ -70,16 +82,38 @@ p{
     margin-bottom: -10%;
 }
 
-#prenom1 {
+#optionsPrenom1 {
     margin-right: 60%;
+    display : flex; 
+    flex-direction: column;
+}
+
+#formPrenom1 {
+    font-family: "advent Pro", sans-serif;
+    font-size : 14px; 
+    margin-top : 10px;
+}
+
+#prenom1 {
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
 }
 
-#prenom2 {
+#optionsPrenom2 {
     margin-left: 60%;
+    display : flex; 
+    flex-direction: column;
+}
+
+#prenom2 {
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
+}
+
+#formPrenom2 {
+    font-family: "advent Pro", sans-serif;
+    margin-top : 10px;
+    font-size : 14px;
 }
 
 .coeur-container {
@@ -87,7 +121,6 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 20px ;
 }
 
 .coeur{
@@ -114,6 +147,7 @@ p{
     width: 10%;
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgb(234, 146, 185);
+    font-family: "advent Pro", sans-serif;
 }
 
 
@@ -137,4 +171,9 @@ p{
     font-size: 30px;
     color: #C00044;
     display: none;
+ }
+
+ #recommencer {
+    margin-left : 36%;
+    margin-bottom : 7%; 
  }

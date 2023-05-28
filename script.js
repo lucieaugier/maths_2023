@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
       if (checkNames() == true)
       {
         var datas = determineCompatibility();
+        checkSex();
         displayDatas(datas);
         displayPercentage(datas);
         resizeImage(datas[6]);
-      }
 
+      }
     });
 });
 
@@ -26,6 +27,60 @@ function checkNames()
   }
   return false; 
 }
+
+
+function checkSex()
+{
+  var sexes = [];
+  const formPrenom1 = document.getElementById('formPrenom1');
+  const formPrenom2 = document.getElementById('formPrenom2');
+
+  const radioButtons1 = formPrenom1.querySelectorAll('input[type="radio"]');
+  const radioButtons2 = formPrenom2.querySelectorAll('input[type="radio"]');
+
+  let selectedSex1 = '';
+  let selectedSex2 = '';
+
+  radioButtons1.forEach(button => {
+    if (button.checked) {
+      selectedSex1 = button.value;
+    }
+  });
+
+  radioButtons2.forEach(button => {
+    if (button.checked) {
+      selectedSex2 = button.value;
+    }
+  });
+
+  sexes.push(selectedSex1, selectedSex2);
+  return sexes;
+}
+
+function bonusPercentage()
+{
+  const sexDatas = checkSex();
+  var bonus = 0; 
+
+  for (let i = 0; i<2; i++)
+  {
+    if (sexDatas[i] == "femme")
+    {
+      bonus += generate_uniformDiscrete(0,10);
+    }
+    else if (sexDatas[i]== "homme")
+    {
+      bonus += generate_poisson(5);
+    } 
+    else 
+    {
+      bonus += generate_bernoulli(0.7);
+    }
+  }
+  console.log(bonus);
+  return bonus; 
+}
+
 
 function determineCompatibility()
 {
@@ -84,10 +139,8 @@ function determineCompatibility()
   datas.push(vie_commune);
   
   var pourcentage_compatibilite;
-  pourcentage_compatibilite=calculerPourcentage_final(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune);
+  pourcentage_compatibilite=calculerPourcentage_final(duree_relation,premiere_dispute,reconciliation,sex,physique,vie_commune) + bonusPercentage();
   datas.push(pourcentage_compatibilite);
-
-  console.log(datas);
   return datas; 
 }
 
@@ -214,7 +267,7 @@ function calculerPourcentage_final(dureeRelation, premiereDispute,tempsReconcili
 function calculerDureeRelation(age1, age2) {
     const differenceAge = Math.abs(age1 - age2);
     const dureeRelation = Math.min(differenceAge, 60); // Limiter la durée à 60 ans
-    return Math.round(dureeRelation);
+    return Math.round(dureeRelation)/5;
   }
   
   // Fonction pour calculer le temps d'apparition de la première dispute en jours (entre 0 et 90)
@@ -256,5 +309,9 @@ function calculerCompatibiliteSexuelle(fumeur1, fumeur2, fidelite1, fidelite2) {
   function calculerDureeVieCommune(animaux1,animaux2) {
     const dureeVieMoyenneAnimal = 5; //  durée de vie moyenne de 5 ans pour chaque animal
     const dureeVieCommune = Math.min(((animaux1+animaux2)/2) * dureeVieMoyenneAnimal, 60); // Limiter à 60 ans
-    return Math.round(dureeVieCommune);
+    return Math.round(dureeVieCommune)/5;
   }
+
+function recommencerTest() {
+  location.reload(); // Recharge la page
+}
