@@ -150,10 +150,10 @@ function displayDatas(datas)
   document.getElementById("submit").style.display = "none";
   document.getElementsByClassName("ficheCompatibilite")[0].style.display = "block";
 
-  document.getElementsByClassName("relation")[0].textContent = datas[0] + " ans";
-  document.getElementsByClassName("vieCommune")[0].textContent = datas[5] + " ans";
-  document.getElementsByClassName("dispute")[0].textContent = datas[1] + " semaines";
-  document.getElementsByClassName("reconciliation")[0].textContent = datas[2] + " heures";
+  document.getElementsByClassName("relation")[0].textContent = datas[0] + " an(s)";
+  document.getElementsByClassName("vieCommune")[0].textContent = datas[5] + " an(s)";
+  document.getElementsByClassName("dispute")[0].textContent = datas[1] + " semaine(s)";
+  document.getElementsByClassName("reconciliation")[0].textContent = datas[2] + " heure(s)";
   document.getElementsByClassName("physique")[0].textContent = datas[3] + " %";
   document.getElementsByClassName("sexuel")[0].textContent = datas[4] + " %";
 }
