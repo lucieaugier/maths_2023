@@ -133,6 +133,7 @@ button
 .ficheCompatibilite {
     display: none;
     margin-top : 50px; 
+    margin-bottom : 50px; 
     background-color: #FFE0EC;
     border-radius: 25px;
     width: 50%;
