@@ -1,6 +1,6 @@
 # maths_2023
 
-Pour le projet de mathématiques, nous avons décidé de coder un “Love Calculator”. Le but du jeu est de calculer la compatibilité amoureuse entre deux prénoms à l'aide de variables aléatoires. 
+For the mathematics project, we decided to code a "Love Calculator." The goal of the game is to calculate the romantic compatibility between two names using random variables and probability distributions.
 
-Pour récupérer ce jeu, il suffit de télécharger le code zip, et d'ouvrir le fichier projet.html dans un navigateur. 
+To get this game, simply download the zip code and open the project.html file in a browser.
 
